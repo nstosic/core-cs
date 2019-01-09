@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Configuration files
+*.json
+
+# Misc
+*.dSYM
