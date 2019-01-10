@@ -10,9 +10,9 @@ Stack<T>::Stack() {
 
 template <typename T>
 Stack<T>::~Stack() {
-    Node<T> temp = this->top;
+    Node<T> *temp = this->top;
     while(temp != nullptr) {
-        this->top = temp->next;
+        this->top = temp->getNext();
         delete temp;
         temp = this->top;
     }
@@ -20,7 +20,7 @@ Stack<T>::~Stack() {
 
 template <typename T>
 void Stack<T>::push(T data) {
-    Node<T> top = new Node<T>(data);
+    Node<T> *top = new Node<T>(data);
     top->next = this->top;
     this->top = top;
     this->count++;
@@ -30,7 +30,7 @@ template <typename T>
 T Stack<T>::pop() {
     if (this->top != nullptr) {
         T data = this->top->data;
-        this->top = this->top->next;
+        this->top = this->top->getNext();
         this->count--;
         return data;
     } else {
@@ -39,7 +39,7 @@ T Stack<T>::pop() {
 }
 
 template <typename T>
-T Stack<T>::peek() {
+T Stack<T>::peek() const {
     if (this->top != nullptr) {
         return this->top->data;
     } else {
@@ -48,6 +48,6 @@ T Stack<T>::peek() {
 }
 
 template <typename T>
-bool Stack<T>::isEmpty() {
+bool Stack<T>::isEmpty() const {
     return this->count == 0;
 }

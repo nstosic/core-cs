@@ -13,8 +13,8 @@ public:
     ~Stack();
     void push(T data);
     T pop();
-    T peek();
-    bool isEmpty();
+    T peek() const;
+    bool isEmpty() const;
 };
 
 #endif
