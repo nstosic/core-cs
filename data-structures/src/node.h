@@ -7,11 +7,12 @@ private:
     T data;
     Node<T> *next;
 public:
-    Node(T data);
+    Node(T t);
     ~Node();
-    void setData(T data);
-    void setNext(Node<T>* next);
-    void setNext(T data);
+    void setData(T t);
+    T getData() const;
+    void setNext(Node<T>* node);
+    void setNext(T t);
     Node<T>* getNext() const;
 };
 

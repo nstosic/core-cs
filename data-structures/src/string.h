@@ -8,8 +8,8 @@ private:
 public:
     String();
     ~String();
-    int length();
-    void print();
+    int length() const;
+    void print() const;
 };
 
 #endif

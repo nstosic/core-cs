@@ -1,8 +1,8 @@
 #include "node.h"
 
 template <typename T>
-Node<T>::Node(T data) {
-    this->data = data;
+Node<T>::Node(T t) {
+    this->data = t;
     this->next = nullptr;
 }
 
@@ -12,18 +12,23 @@ Node<T>::~Node() {
 }
 
 template <typename T>
-void Node<T>::setData(T data) {
-    this->data = data;
+void Node<T>::setData(T t) {
+    this->data = t;
+}
+
+template <typename T>
+T Node<T>::getData() const {
+    return this->data;
 }
 
 template<typename T>
-void Node<T>::setNext(Node<T>* next) {
-    this->next = next;
+void Node<T>::setNext(Node<T>* node) {
+    this->next = node;
 }
 
 template<typename T>
-void Node<T>::setNext(T data) {
-    this->next = new Node(data);
+void Node<T>::setNext(T t) {
+    this->next = new Node(t);
 }
 
 template<typename T>
