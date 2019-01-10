@@ -9,6 +9,13 @@ addons:
                 packages:
                         - g++-6
 
+before_install:
+	- pip install --user cpp-coveralls
+
 script:
         - CXX=/usr/bin/g++-6 CC=/usr/bin/gcc-6 cmake .
         - cmake --build .
+	- ./tests
+
+after_success:
+	- coveralls --root . -E ".*CMakeFiles.*"
