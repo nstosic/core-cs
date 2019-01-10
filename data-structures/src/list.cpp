@@ -59,4 +59,5 @@ int List<T>::size() const {
         count++;
         temp = temp->getNext();
     }
+    return count;
 }
