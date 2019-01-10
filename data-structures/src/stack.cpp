@@ -21,7 +21,7 @@ Stack<T>::~Stack() {
 template <typename T>
 void Stack<T>::push(T data) {
     Node<T> *temp = new Node<T>(data);
-    temp->next = this->top;
+    temp->setNext(this->top);
     this->top = temp;
     this->count++;
 }
@@ -29,7 +29,7 @@ void Stack<T>::push(T data) {
 template <typename T>
 T Stack<T>::pop() {
     if (this->top != nullptr) {
-        T data = this->top->data;
+        T data = this->top->getData();
         this->top = this->top->getNext();
         this->count--;
         return data;
@@ -41,7 +41,7 @@ T Stack<T>::pop() {
 template <typename T>
 T Stack<T>::peek() const {
     if (this->top != nullptr) {
-        return this->top->data;
+        return this->top->getData();
     } else {
         throw new std::runtime_error("Using Stack::pop() on an empty data structure is forbidden.");
     }
