@@ -9,7 +9,7 @@ file(GLOB_RECURSE SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "data-structures/*.cpp")
 add_executable(tests ${SOURCES})
 
 find_package (Threads)
-target_link_libraries(tests gtest ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(tests PUBLIC gtest ${CMAKE_THREAD_LIBS_INIT})
 
 if (MSVC)
     target_compile_options(tests PRIVATE /std:c++17 /W4 /WX)
