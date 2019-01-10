@@ -12,6 +12,7 @@ public:
     void setData(T data);
     void setNext(Node<T>* next);
     void setNext(T data);
+    Node<T>* getNext() const;
 };
 
 #endif

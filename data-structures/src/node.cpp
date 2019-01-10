@@ -25,3 +25,8 @@ template<typename T>
 void Node<T>::setNext(T data) {
     this->next = new Node(data);
 }
+
+template<typename T>
+Node<T>* Node<T>::getNext() const {
+    return this->next;
+}
