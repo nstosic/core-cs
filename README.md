@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/core-cs/core-cs.svg?branch=master)](https://travis-ci.org/nstosic/core-cs)
+[![Build Status](https://travis-ci.org/nstosic/core-cs.svg?branch=master)](https://travis-ci.org/nstosic/core-cs)
 [![Coverage Status](https://coveralls.io/repos/github/nstosic/core-cs/badge.svg?branch=master)](https://coveralls.io/github/nstosic/core-cs?branch=master)
 
 # core-cs
