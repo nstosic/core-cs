@@ -20,9 +20,9 @@ Stack<T>::~Stack() {
 
 template <typename T>
 void Stack<T>::push(T data) {
-    Node<T> *top = new Node<T>(data);
-    top->next = this->top;
-    this->top = top;
+    Node<T> *temp = new Node<T>(data);
+    temp->next = this->top;
+    this->top = temp;
     this->count++;
 }
 
