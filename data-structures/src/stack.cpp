@@ -51,3 +51,5 @@ template <typename T>
 bool Stack<T>::isEmpty() const {
     return this->count == 0;
 }
+
+template class Stack<int>; // forward resolution for template type used in unit tests
