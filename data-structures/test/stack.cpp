@@ -6,8 +6,8 @@ TEST(StackSuite, NewStackIsEmpty) {
     Stack<int> softwareUnderTest;
     
     // Execution
-    int count = softwareUnderTest.isEmpty();
+    bool empty = softwareUnderTest.isEmpty();
 
     // Verification
-    ASSERT_EQ(0, count);
+    ASSERT_TRUE(empty);
 }
