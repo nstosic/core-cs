@@ -5,7 +5,7 @@ include(gtest.cmake)
 
 SET(COVERAGE OFF CACHE BOOL "Coverage")
 
-file(GLOB_RECURSE SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "data-structures/test/*.cpp")
+file(GLOB_RECURSE SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "data-structures/*.cpp")
 add_executable(tests ${SOURCES})
 
 find_package (Threads)
