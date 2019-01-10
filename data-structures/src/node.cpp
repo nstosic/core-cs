@@ -35,3 +35,5 @@ template<typename T>
 Node<T>* Node<T>::getNext() const {
     return this->next;
 }
+
+template class Node<int>; // forward resolution for template type used in unit tests
