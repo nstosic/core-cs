@@ -4,6 +4,7 @@ project(core-cs)
 include(gtest.cmake)
 
 SET(COVERAGE OFF CACHE BOOL "Coverage")
+add_definitions(-Wall -std=c++11)
 
 file(GLOB_RECURSE SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "data-structures/*.cpp")
 add_executable(tests ${SOURCES})
