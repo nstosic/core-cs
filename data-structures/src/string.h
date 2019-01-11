@@ -4,12 +4,16 @@
 class String {
 private:
     char* buffer;
-    int count;
+    unsigned long count;
 public:
     String();
     ~String();
-    int length() const;
+    unsigned long length() const;
     void print() const;
+    const char* unsafePointer() const;
+
+    // Operator overloading
+    void operator= (const char* data);
 };
 
 #endif
