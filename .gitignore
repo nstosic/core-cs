@@ -30,7 +30,8 @@
 *.exe
 *.out
 *.app
-tests
+algorithms_tests
+data_structures_tests
 
 #CMake
 CMakeLists.txt.user
