@@ -6,15 +6,15 @@
 template <typename T>
 class List {
 private:
-    Node<T>* head;
+    Node<T>* head_;
 public:
     List();
     ~List();
-    Node<T>* getHead() const;
-    void add(Node<T>* node);
-    void add(T node);
-    bool isEmpty() const;
-    int size() const;
+    Node<T>* GetHead() const;
+    void Add(Node<T>* node);
+    void Add(T node);
+    bool IsEmpty() const;
+    int Size() const;
 };
 
 #endif

@@ -5,7 +5,7 @@
 #define DICTIONARY_LIMIT 1024
 
 namespace lzw {
-    std::unordered_map<std::string, int> defaultDictionary() {
+    std::unordered_map<std::string, int> DefaultCompressionDictionary() {
         std::unordered_map<std::string, int> dictionary;
         for (int i = 0; i < 256; i++) {
             dictionary[std::string(1, i)] = i;
@@ -13,7 +13,15 @@ namespace lzw {
         return dictionary;
     }
 
-    int compression_step(std::string input, std::unordered_map<std::string, int> &current_dictionary) {
+    std::unordered_map<int, std::string> DefaultDecompressionDictionary() {
+        std::unordered_map<int, std::string> dictionary;
+        for (int i = 0; i < 256; i++) {
+            dictionary[i] = std::string(1, i);
+        }
+        return dictionary;
+    }
+
+    int CompressionStep(std::string input, std::unordered_map<std::string, int> &current_dictionary) {
         if (current_dictionary.find(input) == current_dictionary.end()) {
             current_dictionary[input] = (int)current_dictionary.size() - 1;
             return current_dictionary[input.substr(0, input.size() - 1)];
@@ -21,13 +29,13 @@ namespace lzw {
         return -1;
     }
 
-    std::vector<int> compress(std::string input, std::unordered_map<std::string, int> dictionary_to_use = defaultDictionary()) {
+    std::vector<int> Compress(std::string input, std::unordered_map<std::string, int> dictionary_to_use = DefaultCompressionDictionary()) {
         std::vector<int> output_vector;
         std::string current_symbol;
         int output_code;
         for(std::string::const_iterator it = input.begin(); it != input.end(); ++it) {
             current_symbol = current_symbol + *it;
-            output_code = compression_step(current_symbol, dictionary_to_use);
+            output_code = CompressionStep(current_symbol, dictionary_to_use);
             if (output_code >= 0) {
                 current_symbol.erase(0, current_symbol.size() - 1);
                 output_vector.push_back(output_code);
@@ -39,4 +47,8 @@ namespace lzw {
         }
         return output_vector;
     }
+
+    // std::string DecompressionStep(int code, std::unordered_map<int, std::string> &current_dictionary) {
+        
+    // }
 }

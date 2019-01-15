@@ -7,53 +7,53 @@ List<T>::List() {
 
 template <typename T>
 List<T>::~List() {
-    Node<T>* temp = this->head;
+    Node<T>* temp = this->head_;
     while (temp != nullptr) {
-        this->head = this->head->getNext();
+        this->head_ = this->head_->getNext();
         delete temp;
-        temp = this->head;
+        temp = this->head_;
     }
 }
 
 template <typename T>
-Node<T>* List<T>::getHead() const {
-    return this->head;
+Node<T>* List<T>::GetHead() const {
+    return this->head_;
 }
 
 template <typename T>
-void List<T>::add(Node<T>* node) {
-    if (this->head == nullptr) {
-        this->head = node;
+void List<T>::Add(Node<T>* node) {
+    if (this->head_ == nullptr) {
+        this->head_ = node;
     } else {
-        Node<T>* temp = this->head;
-        while (temp->getNext() != nullptr) {
-            temp = temp->getNext();
+        Node<T>* temp = this->head_;
+        while (temp->GetNext() != nullptr) {
+            temp = temp->GetNext();
         }
-        temp->setNext(node);
+        temp->SetNext(node);
     }
 }
 
 template <typename T>
-void List<T>::add(T data) {
-    if (this->head == nullptr) {
-        this->head = new Node<T>(data);
+void List<T>::Add(T data) {
+    if (this->head_ == nullptr) {
+        this->head_ = new Node<T>(data);
     } else {
-        Node<T>* temp = this->head;
-        while (temp->getNext() != nullptr) {
-            temp = temp->getNext();
+        Node<T>* temp = this->head_;
+        while (temp->GetNext() != nullptr) {
+            temp = temp->GetNext();
         }
-        temp->setNext(new Node<T>(data));
+        temp->SetNext(new Node<T>(data));
     }
 }
 
 template <typename T>
-bool List<T>::isEmpty() const {
-    return this->head == nullptr;
+bool List<T>::IsEmpty() const {
+    return this->head_ == nullptr;
 }
 
 template <typename T>
-int List<T>::size() const {
-    Node<T>* temp = this->head;
+int List<T>::Size() const {
+    Node<T>* temp = this->head_;
     int count = 0;
     while(temp != nullptr) {
         count++;

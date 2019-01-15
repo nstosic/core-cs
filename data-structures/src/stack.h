@@ -6,15 +6,15 @@
 template <typename T>
 class Stack {
 private:
-    Node<T> *top;
-    int count;
+    Node<T> *top_;
+    int count_;
 public:
     Stack();
     ~Stack();
-    void push(T data);
-    T pop();
-    T peek() const;
-    bool isEmpty() const;
+    void Push(T data);
+    T Pop();
+    T Peek() const;
+    bool IsEmpty() const;
 };
 
 #endif

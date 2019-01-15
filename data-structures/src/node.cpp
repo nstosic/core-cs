@@ -2,38 +2,38 @@
 
 template <typename T>
 Node<T>::Node(T t) {
-    this->data = t;
-    this->next = nullptr;
+    this->data_ = t;
+    this->next_ = nullptr;
 }
 
 template <typename T>
 Node<T>::~Node() {
-    delete this->next;
+    delete this->next_;
 }
 
 template <typename T>
-void Node<T>::setData(T t) {
-    this->data = t;
+void Node<T>::SetData(T t) {
+    this->data_ = t;
 }
 
 template <typename T>
-T Node<T>::getData() const {
-    return this->data;
+T Node<T>::GetData() const {
+    return this->data_;
 }
 
 template<typename T>
-void Node<T>::setNext(Node<T>* node) {
-    this->next = node;
+void Node<T>::SetNext(Node<T>* node) {
+    this->next_ = node;
 }
 
 template<typename T>
-void Node<T>::setNext(T t) {
-    this->next = new Node(t);
+void Node<T>::SetNext(T t) {
+    this->next_ = new Node(t);
 }
 
 template<typename T>
-Node<T>* Node<T>::getNext() const {
-    return this->next;
+Node<T>* Node<T>::GetNext() const {
+    return this->next_;
 }
 
 template class Node<int>; // forward resolution for template type used in unit tests

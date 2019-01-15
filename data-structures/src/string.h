@@ -3,14 +3,14 @@
 
 class String {
 private:
-    char* buffer;
-    unsigned long count;
+    char* buffer_;
+    unsigned long count_;
 public:
     String();
     ~String();
-    unsigned long length() const;
-    void print() const;
-    const char* unsafePointer() const;
+    unsigned long Length() const;
+    void Print() const;
+    const char* UnsafePointer() const;
 
     // Operator overloading
     void operator= (const char* data);

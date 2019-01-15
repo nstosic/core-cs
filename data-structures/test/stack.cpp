@@ -6,7 +6,7 @@ TEST(StackSuite, NewStackIsEmpty) {
     Stack<int> softwareUnderTest;
     
     // Execution
-    bool empty = softwareUnderTest.isEmpty();
+    bool empty = softwareUnderTest.IsEmpty();
 
     // Verification
     ASSERT_TRUE(empty);

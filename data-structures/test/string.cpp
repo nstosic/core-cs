@@ -6,7 +6,7 @@ TEST(StringSuite, NewStringIsEmpty) {
     String softwareUnderTest;
 
     // Execution
-    unsigned long count = softwareUnderTest.length();
+    unsigned long count = softwareUnderTest.Length();
 
     // Verification
     ASSERT_EQ(0L, count);
@@ -24,7 +24,7 @@ TEST(StringSuite, UnsafePointerReturnsCorrectAddress) {
     unsigned long address;
 
     // Execution
-    address = (unsigned long)softwareUnderTest->unsafePointer();
+    address = (unsigned long)softwareUnderTest->UnsafePointer();
 
     // Verification
     ASSERT_EQ(0x04030201, address);
@@ -42,7 +42,7 @@ TEST(StringSuite, RValueIsAssignedToLValueInEqualOperator) {
     for (unsigned long i = 0; i < sizeof(testString); i++) {
         ASSERT_EQ(
             (unsigned char)*(testString + i),
-            (unsigned char)*(softwareUnderTest.unsafePointer() + i)
+            (unsigned char)*(softwareUnderTest.UnsafePointer() + i)
             );
     }
 }

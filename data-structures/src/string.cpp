@@ -3,33 +3,33 @@
 #include <cstring>
 
 String::String() {
-    this->buffer = nullptr;
-    this->count = 0L;
+    this->buffer_ = nullptr;
+    this->count_ = 0L;
 }
 
 String::~String() {
-    delete[] this->buffer;
+    delete[] this->buffer_;
 }
 
-unsigned long String::length() const {
-    return this->count;
+unsigned long String::Length() const {
+    return this->count_;
 }
 
-void String::print() const {
+void String::Print() const {
     int index = 0;
-    while(buffer[index] != '\0') {
-        printf("%c", buffer[index]);
+    while(buffer_[index] != '\0') {
+        printf("%c", buffer_[index]);
     }
 }
 
-const char* String::unsafePointer() const {
-    return this->buffer;
+const char* String::UnsafePointer() const {
+    return this->buffer_;
 }
 
 // Operator overloading
 void String::operator= (const char* data) {
-    delete[] this->buffer;
-    count = sizeof(data);
-    this->buffer = new char[count];
-    memcpy(this->buffer, data, count);
+    delete[] this->buffer_;
+    count_ = sizeof(data);
+    this->buffer_ = new char[count_];
+    memcpy(this->buffer_, data, count_);
 }
