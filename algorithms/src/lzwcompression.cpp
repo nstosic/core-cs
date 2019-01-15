@@ -15,7 +15,7 @@ namespace lzw {
 
     int compression_step(std::string input, std::unordered_map<std::string, int> &current_dictionary) {
         if (current_dictionary.find(input) == current_dictionary.end()) {
-            current_dictionary[input] = (int)current_dictionary.size();
+            current_dictionary[input] = (int)current_dictionary.size() - 1;
             return current_dictionary[input.substr(0, input.size() - 1)];
         }
         return -1;
