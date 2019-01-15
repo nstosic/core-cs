@@ -17,7 +17,7 @@ TEST(LZW_Suite, LZW_CompressEmptyInput) {
 TEST(LZW_Suite, LZW_CompressOutputsCorrectCode) {
     // Setup
     std::string input = "LALAA";
-    std::vector<int> expected_output = {76, 65, 255, 65};
+    std::vector<int> expected_output = {76, 65, 256, 65};
 
     // Execution
     std::vector<int> output = lzw::compress(input);
@@ -28,15 +28,15 @@ TEST(LZW_Suite, LZW_CompressOutputsCorrectCode) {
     }
 }
 
-TEST(LZW_Suite, LZW_CompressAddsToDictionaryIfSymbolIsNotContained) {
+TEST(LZW_Suite, LZW_CompressionStepAddsToDictionaryIfSymbolIsNotContained) {
     // Setup
     std::string input = "LA";
     std::unordered_map<std::string, int> mocked_dictionary;
-    mocked_dictionary[std::string("L")] = 1;
-    mocked_dictionary[std::string("A")] = 2;
+    mocked_dictionary[std::string("L")] = 0;
+    mocked_dictionary[std::string("A")] = 1;
 
     // Execution
-    std::vector<int> output = lzw::compress(input, mocked_dictionary);
+    lzw::compression_step(input, mocked_dictionary);
 
     // Verification
     ASSERT_TRUE(mocked_dictionary.find(std::string("LA")) != mocked_dictionary.end());
