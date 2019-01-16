@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "../src/stack.h"
+#include <cstdarg>
 
 // Initializes the stack with the arguments in LIFO order
 Stack<int> initializeStack(const int param_count...) {
