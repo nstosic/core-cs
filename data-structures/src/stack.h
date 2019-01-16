@@ -14,6 +14,7 @@ public:
     void Push(T data);
     T Pop();
     T Peek() const;
+    int Size() const;
     bool IsEmpty() const;
 };
 

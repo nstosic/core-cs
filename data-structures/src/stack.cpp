@@ -48,6 +48,11 @@ T Stack<T>::Peek() const {
 }
 
 template <typename T>
+int Stack<T>::Size() const {
+    return this->count_;
+}
+
+template <typename T>
 bool Stack<T>::IsEmpty() const {
     return this->count_ == 0;
 }
