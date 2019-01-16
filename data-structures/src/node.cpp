@@ -7,11 +7,6 @@ Node<T>::Node(T t) {
 }
 
 template <typename T>
-Node<T>::~Node() {
-    delete this->next_;
-}
-
-template <typename T>
 void Node<T>::SetData(T t) {
     this->data_ = t;
 }

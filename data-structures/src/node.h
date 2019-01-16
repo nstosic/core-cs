@@ -8,7 +8,6 @@ private:
     Node<T> *next_;
 public:
     Node(T t);
-    ~Node();
     void SetData(T t);
     T GetData() const;
     void SetNext(Node<T>* node);
