@@ -5,3 +5,5 @@
 This is a repo containing core computer science knowledge, both basic and advanced.
 
 I've mainly started it to have a playground for honing my C++ skills, and to keep fresh with core CS knowledge like Kruskal's, Dijkstra's, LZW and other algorithms.
+
+Attempts have been made to keep the coding style and use conventions according to [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html).
