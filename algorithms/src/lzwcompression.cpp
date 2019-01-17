@@ -48,7 +48,31 @@ namespace lzw {
         return output_vector;
     }
 
-    // std::string DecompressionStep(int code, std::unordered_map<int, std::string> &current_dictionary) {
-        
-    // }
+    std::string DecompressionStep(int code, std::string previously_decoded, std::unordered_map<int, std::string> &current_dictionary) {
+        std::string new_dictionary_entry;
+        if (current_dictionary.find(code) != current_dictionary.end()) {
+            new_dictionary_entry = previously_decoded;
+            new_dictionary_entry = new_dictionary_entry + current_dictionary[code][0];
+            current_dictionary[(int)current_dictionary.size()] = new_dictionary_entry;
+        } else {
+            new_dictionary_entry = previously_decoded + previously_decoded[0];
+            current_dictionary[(int)current_dictionary.size()] = new_dictionary_entry;
+        }
+        return current_dictionary[code];
+    }
+
+    std::string Decompress(std::vector<int> compressed_code, std::unordered_map<int, std::string> dictionary_to_use = DefaultDecompressionDictionary()) {
+        if (compressed_code.empty()) {
+            return std::string("");
+        }
+        unsigned int i = 1;
+        std::string output = dictionary_to_use[compressed_code[0]];
+        std::string previously_decoded = output;
+        while (i < compressed_code.size()) {
+            previously_decoded = DecompressionStep(compressed_code[i], previously_decoded, dictionary_to_use);
+            output = output + previously_decoded;
+            i++;
+        }
+        return output;
+    }
 }
