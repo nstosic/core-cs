@@ -15,7 +15,7 @@ TEST(CircularBufferSuite, ConstructorSpecifiesBufferSize) {
 TEST(CircularBufferSuite, ProduceUpdatesTailValue) {
     // Setup
     CircularBuffer software_under_test(5);
-    void* circular_buffer_pointer = (void*)&software_under_test;
+    char* circular_buffer_pointer = (char*)&software_under_test;
     int original_tail_value = (int)(*(int*)(circular_buffer_pointer + sizeof(unsigned int) + sizeof(int)));
 
     // Execution
@@ -29,7 +29,7 @@ TEST(CircularBufferSuite, ProduceUpdatesTailValue) {
 TEST(CircularBufferSuite, ConsumeUpdatesHeadValue) {
     // Setup
     CircularBuffer software_under_test(5);
-    void* circular_buffer_pointer = (void*)&software_under_test;
+    char* circular_buffer_pointer = (char*)&software_under_test;
     int original_head_value = (int)(*(int*)(circular_buffer_pointer + sizeof(unsigned int)));
     software_under_test.Produce(3);
     software_under_test.Produce(3);
