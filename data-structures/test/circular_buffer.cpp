@@ -35,7 +35,7 @@ TEST(CircularBufferSuite, ConsumeUpdatesHeadValue) {
     software_under_test.Produce(3);
 
     // Execution
-    
+    software_under_test.Consume();
     int updated_head_value = (int)(*(int*)(circular_buffer_pointer + sizeof(unsigned int)));
 
     // Verification
