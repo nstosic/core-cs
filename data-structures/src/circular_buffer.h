@@ -5,10 +5,10 @@
 
 class CircularBuffer {
 private:
+    int* buffer_;
     unsigned int size_;
     int head_;
     int tail_;
-    int* buffer_;
     std::mutex mutex_;
 public:
     CircularBuffer(unsigned int size);

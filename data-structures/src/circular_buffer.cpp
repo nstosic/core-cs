@@ -21,7 +21,7 @@ void CircularBuffer::Produce(int data) {
 
 int CircularBuffer::Consume() {
     std::lock_guard<std::mutex> lock(mutex_);
-    int data;
+    int data = -1;
     if (head_ != tail_) {
         data = buffer_[head_];
         head_ = (head_ + 1) % (int)size_;
@@ -38,6 +38,6 @@ int CircularBuffer::Available() {
     if (head_ > tail_) {
         return head_ - tail_ - 1;
     } else {
-        return size_ = tail_ + head_ - 1;
+        return (int)size_ - (tail_ + head_ - 1);
     }
 }
