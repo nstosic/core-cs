@@ -11,7 +11,7 @@ add_executable(data_structures_tests ${SOURCES})
 file(GLOB_RECURSE SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "algorithms/*.cpp")
 add_executable(algorithms_tests ${SOURCES})
 
-find_package (Threads)
+find_package (Threads REQUIRED)
 target_link_libraries(data_structures_tests PUBLIC gtest ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(algorithms_tests PUBLIC gtest ${CMAKE_THREAD_LIBS_INIT})
 
