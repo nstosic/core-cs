@@ -94,7 +94,7 @@ TEST(CircularBufferSuite, ConsumeUpdatesHeadValue) {
     software_under_test.Consume();
 
     // Verification
-    int updated_head_value = *(int*)(void*)(circular_buffer_pointer + sizeof(unsigned int));
+    int updated_head_value = *(int*)(void*)(circular_buffer_pointer + sizeof(int*) + sizeof(unsigned int));
     ASSERT_EQ(original_head_value + 1, updated_head_value);
 }
 
