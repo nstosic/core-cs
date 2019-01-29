@@ -12,6 +12,31 @@ TEST(CircularBufferSuite, ConstructorSpecifiesBufferSize) {
     ASSERT_EQ(size_param, software_under_test.Size());
 }
 
+TEST(CircularBufferSuite, ProduceReturnsTrueIfValueIsStored) {
+    // Setup
+    CircularBuffer software_under_test(5);
+
+    // Execution
+    bool produce_result = software_under_test.Produce(2);
+
+    // Verification
+    ASSERT_TRUE(produce_result);
+}
+
+TEST(CircularBufferSuite, ProduceReturnsFalseIfBufferIsFull) {
+    // Setup
+    CircularBuffer software_under_test(5);
+    char* circular_buffer_pointer = (char*)&software_under_test;
+    void* tail_pointer = (void*)(circular_buffer_pointer + sizeof(int*) + sizeof(unsigned int) + sizeof(int));
+    *((int*)tail_pointer) = 4;
+
+    // Execution
+    bool produce_result = software_under_test.Produce(2);
+
+    // Verification
+    ASSERT_FALSE(produce_result);
+}
+
 TEST(CircularBufferSuite, ProduceUpdatesTailValue) {
     // Setup
     CircularBuffer software_under_test(5);

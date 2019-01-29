@@ -11,12 +11,14 @@ CircularBuffer::~CircularBuffer() {
     delete[] this->buffer_;
 }
 
-void CircularBuffer::Produce(int data) {
+bool CircularBuffer::Produce(int data) {
     std::lock_guard<std::mutex> lock(mutex_);
     if ((tail_ + 1) % (int)size_ != head_) {
         buffer_[tail_] = data;
         tail_ = (tail_ + 1) % (int)size_;
+        return true;
     }
+    return false;
 }
 
 int CircularBuffer::Consume() {

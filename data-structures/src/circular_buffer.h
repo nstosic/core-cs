@@ -13,7 +13,7 @@ private:
 public:
     CircularBuffer(unsigned int size);
     ~CircularBuffer();
-    void Produce(int data);
+    bool Produce(int data);
     int Consume();
     unsigned int Size() const;
     int Available();
