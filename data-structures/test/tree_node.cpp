@@ -31,7 +31,7 @@ TEST(TreeNodeSuite, ConstructorInitializesEmptyBufferForChildren) {
     std::vector<TreeNode<int>*> test = software_under_test.GetChildren();
 
     // Verification
-    ASSERT_EQ(0, test.size());
+    ASSERT_TRUE(test.empty());
 }
 
 TEST(TreeNodeSuite, AddChildReturnsTrueIfChildrenBufferIsNotFull) {
@@ -39,7 +39,7 @@ TEST(TreeNodeSuite, AddChildReturnsTrueIfChildrenBufferIsNotFull) {
     TreeNode<int> software_under_test(12, 2);
 
     // Execution
-    bool test = software_under_test.AddChild(new TreeNode<int>(12, 2));
+    bool test = software_under_test.AddChild(new TreeNode<int>(122, 2));
 
     // Verification
     ASSERT_TRUE(test);
@@ -48,7 +48,7 @@ TEST(TreeNodeSuite, AddChildReturnsTrueIfChildrenBufferIsNotFull) {
 TEST(TreeNodeSuite, AddChildAddsNodeToTheChildrenBuffer) {
     // Setup
     TreeNode<int> software_under_test(12, 2);
-    TreeNode<int>* child = new TreeNode<int>(12, 2);
+    TreeNode<int>* child = new TreeNode<int>(2, 2);
 
     // Execution
     software_under_test.AddChild(child);
