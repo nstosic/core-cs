@@ -17,7 +17,7 @@ TEST(TreeNodeSuite, ConstructorSetsNodeMaximumNumberOfChildrenProperly) {
     TreeNode<int> software_under_test(12, 2);
 
     // Execution
-    int test = software_under_test.GetMaximumNumberOfChildren;
+    int test = software_under_test.GetMaximumNumberOfChildren();
 
     // Verification
     ASSERT_EQ(2, test);
