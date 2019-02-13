@@ -12,7 +12,7 @@ TEST(BinarySearchTreeSuite, InitialTreeIsEmpty) {
     ASSERT_EQ(nullptr, root);
 }
 
-TEST(BinarySearchTreeeSuite, NodeAddedToEmptyTreeBecomesItsRoot) {
+TEST(BinarySearchTreeSuite, NodeAddedToEmptyTreeBecomesItsRoot) {
     // Setup
     BinarySearchTree<int> software_under_test;
 
