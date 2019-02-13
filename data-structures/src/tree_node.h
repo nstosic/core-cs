@@ -6,7 +6,7 @@ template <typename T>
 class TreeNode {
 private:
     T data_;
-    std::vector<TreeNode<T>> children_;
+    std::vector<TreeNode<T>*> children_;
 public:
     TreeNode<T>(T data, int number_of_children);
     ~TreeNode<T>();
@@ -14,7 +14,7 @@ public:
     void SetData(T data);
     int GetNumberOfChildren() const;
     int GetMaximumNumberOfChildren() const;
-    const std::vector<TreeNode<T>> GetChildren() const;
+    const std::vector<TreeNode<T>*> GetChildren() const;
     bool AddChild(TreeNode<T> node);
     bool AddChild(TreeNode<T> node, int index);
     bool RemoveChild(int index);

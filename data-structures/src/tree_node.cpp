@@ -30,7 +30,7 @@ int TreeNode<T>::GetMaximumNumberOfChildren() const {
 }
 
 template <typename T>
-const std::vector<TreeNode<T>> TreeNode<T>::GetChildren() const {
+const std::vector<TreeNode<T>*> TreeNode<T>::GetChildren() const {
     return this->children_;
 }
 
