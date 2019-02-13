@@ -5,9 +5,9 @@ TreeNode<T>* BinarySearchTree<T>::Search(T data) const {
     TreeNode<T>* temp = this->root_;
     while (temp != nullptr && temp->GetData() != data) {
         if (temp->GetData() > data) {
-            temp = temp->GetChildren[0];
+            temp = temp->GetChildren()[0];
         } else {
-            temp = temp->GetChildren[1];
+            temp = temp->GetChildren()[1];
         }
     }
     return temp;
