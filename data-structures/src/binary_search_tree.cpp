@@ -56,7 +56,7 @@ template <typename T>
 bool BinarySearchTree<T>::Remove(T data) {
     TreeNode<T>* parent = nullptr;
     TreeNode<T>* temp = this->root_;
-    int index = -1;
+    unsigned int index = 2;
     if (temp == nullptr) {
         return false;
     }
@@ -84,7 +84,7 @@ bool BinarySearchTree<T>::Remove(T data) {
 }
 
 template <typename T>
-inline void deleteInPlace(TreeNode<T>* node_to_delete, TreeNode<T>* parent, int child_index) {
+inline void deleteInPlace(TreeNode<T>* node_to_delete, TreeNode<T>* parent, unsigned int child_index) {
     TreeNode<T>* replacement = nullptr;
     TreeNode<T>* replacement_parent = nullptr;
     if (parent == nullptr) {

@@ -1,9 +1,10 @@
 #include "tree_node.h"
 
 template <typename T>
-TreeNode<T>::TreeNode(T data, int number_of_children) {
+TreeNode<T>::TreeNode(T data, unsigned int number_of_children) {
     this->data_ = data;
-    this->children_ = std::vector(number_of_children);
+    this->maximum_number_of_children = number_of_children;
+    this->children_ = std::vector<TreeNode<T>*>(number_of_children);
 }
 
 template <typename T>
@@ -20,13 +21,13 @@ void TreeNode<T>::SetData(T data) {
 }
 
 template <typename T>
-int TreeNode<T>::GetNumberOfChildren() const {
-    return children_.size();
+unsigned int TreeNode<T>::GetNumberOfChildren() const {
+    return (unsigned int)this->children_.size();
 }
 
 template <typename T>
-int TreeNode<T>::GetMaximumNumberOfChildren() const {
-    return this->children_.capacity();
+unsigned int TreeNode<T>::GetMaximumNumberOfChildren() const {
+    return maximum_number_of_children;
 }
 
 template <typename T>
@@ -35,8 +36,8 @@ const std::vector<TreeNode<T>*> TreeNode<T>::GetChildren() const {
 }
 
 template <typename T>
-bool TreeNode<T>::AddChild(TreeNode<T> child) {
-    if (this->children_.size() < this->children_.capacity()) {
+bool TreeNode<T>::AddChild(TreeNode<T>* child) {
+    if (this->children_.size() < maximum_number_of_children) {
         this->children_.push_back(child);
         return true;
     }
@@ -44,19 +45,21 @@ bool TreeNode<T>::AddChild(TreeNode<T> child) {
 }
 
 template <typename T>
-bool TreeNode<T>::AddChild(TreeNode<T> child, int index) {
-    if (this->children_.size() < this->children_.capacity() && index < this->children_.capacity()) {
-        this->children_.insert(index, child);
+bool TreeNode<T>::AddChild(TreeNode<T>* child, unsigned int index) {
+    if (index < maximum_number_of_children) {
+        this->children_[index] = child;
         return true;
     }
     return false;
 }
 
 template <typename T>
-bool TreeNode<T>::RemoveChild(int index) {
-    if (index < this.children_.size() && this.children_[index] != nullptr) {
-        this->children[i] = nullptr;
+bool TreeNode<T>::RemoveChild(unsigned int index) {
+    if (index < this->children_.size() && this->children_[index] != nullptr) {
+        this->children_[index] = nullptr;
         return true;
     }
     return false;
 }
+
+template class TreeNode<int>; // forward resolution for template type used in unit tests
