@@ -111,7 +111,7 @@ inline void deleteInPlace(TreeNode<T>* node_to_delete, TreeNode<T>* parent, int 
                 delete replacement;
             }
         }
-    } else if (index == 0) {
+    } else if (child_index == 0) {
         // Look for the greatest value in node_to_delete subtree
         replacement_parent = parent;
         replacement = node_to_delete;

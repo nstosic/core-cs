@@ -6,7 +6,7 @@
 #define BST_NUMBER_OF_CHILDREN 2
 
 template <typename T>
-class BinarySearchTree : public AbstractTree {
+class BinarySearchTree : public AbstractTree<T> {
 public:
     TreeNode<T>* Search(T data) const;
     bool Insert(T data);
