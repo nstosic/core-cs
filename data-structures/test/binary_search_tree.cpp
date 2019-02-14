@@ -23,7 +23,7 @@ TEST(BinarySearchTreeSuite, NodeAddedToEmptyTreeBecomesItsRoot) {
     ASSERT_EQ(2, software_under_test.GetRoot()->GetData());
 }
 
-TEST(BinarySearchTreeSuite, ValueAddedToRootBecomesItsLeftChildIfSmaller) {
+TEST(BinarySearchTreeSuite, NodeAddedToRootBecomesItsLeftChildIfSmaller) {
     // Setup
     BinarySearchTree<int> software_under_test;
     software_under_test.Insert(5);

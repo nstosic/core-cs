@@ -17,21 +17,21 @@ TEST(TreeNodeSuite, ConstructorSetsNodeMaximumNumberOfChildrenProperly) {
     TreeNode<int> software_under_test(12, 2);
 
     // Execution
-    int test = software_under_test.GetMaximumNumberOfChildren();
+    unsigned int test = software_under_test.GetMaximumNumberOfChildren();
 
     // Verification
     ASSERT_EQ(2, test);
 }
 
-TEST(TreeNodeSuite, ConstructorInitializesEmptyBufferForChildren) {
+TEST(TreeNodeSuite, ConstructorInitializesNumberOfChildrenToZero) {
     // Setup
     TreeNode<int> software_under_test(12, 2);
 
     // Execution
-    std::vector<TreeNode<int>*> test = software_under_test.GetChildren();
+    unsigned int number_of_children = software_under_test.GetNumberOfChildren();
 
     // Verification
-    ASSERT_TRUE(test.empty());
+    ASSERT_EQ(0, number_of_children);
 }
 
 TEST(TreeNodeSuite, AddChildReturnsTrueIfChildrenBufferIsNotFull) {
