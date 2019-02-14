@@ -20,7 +20,7 @@ bool BinarySearchTree<T>::Insert(T data) {
         this->root_ = new TreeNode<T>(data, BST_NUMBER_OF_CHILDREN);
         return true;
     }
-    while (!temp->GetChildren().empty()) {
+    while (temp->GetNumberOfChildren() != 0) {
         if (temp->GetData() < data) {
             if (temp->GetChildren()[1] == nullptr) {
                 temp->AddChild(new TreeNode<T>(data, BST_NUMBER_OF_CHILDREN), 1);
@@ -60,7 +60,7 @@ bool BinarySearchTree<T>::Remove(T data) {
     if (temp == nullptr) {
         return false;
     }
-    while (!temp->GetChildren().empty()) {
+    while (temp->GetNumberOfChildren() != 0) {
         if (temp->GetData() == data) {
             break;
         } else {
