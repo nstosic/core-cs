@@ -10,14 +10,14 @@ private:
     TreeNode<T>** children_;
 public:
     TreeNode<T>(T data, unsigned int number_of_children);
-    ~TreeNode<T>();
+    ~TreeNode<T>() = default;
     const T& GetData() const;
     void SetData(T data);
     unsigned int GetNumberOfChildren() const;
     unsigned int GetMaximumNumberOfChildren() const;
     TreeNode<T>** GetChildren() const;
     bool AddChild(TreeNode<T>* node);
-    bool AddChild(TreeNode<T>* node, unsigned int index);
+    bool SetChild(TreeNode<T>* node, unsigned int index);
     bool RemoveChild(unsigned int index);
 };
 
