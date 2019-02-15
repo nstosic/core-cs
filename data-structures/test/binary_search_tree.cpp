@@ -2,6 +2,18 @@
 #include "../src/binary_search_tree.h"
 #include <random>
 #include <queue>
+#include <cstdarg>
+
+BinarySearchTree<int> initializeTree(const int param_count...) {
+    BinarySearchTree<int> bst;
+    va_list args;
+    va_start(args, param_count);
+    for (int i = 0; i < param_count; i++) {
+        bst.Insert(va_arg(args, int));
+    }
+    va_end(args);
+    return bst;
+}
 
 TEST(BinarySearchTreeSuite, InitialTreeIsEmpty) {
     // Setup
@@ -61,12 +73,12 @@ TEST(BinarySearchTreeSuite, InsertReturnsFalseIfValueAlreadyExistsInTheTree) {
     ASSERT_FALSE(test);
 }
 
-TEST(BinarySearchTreeSuite, RemovingFromEmptyTreeReturnsFalse) {
+TEST(BinarySearchTreeSuite, InsertReturnsFalseImmediatelyAfterFindingTheValueInTheTree) {
     // Setup
-    BinarySearchTree<int> software_under_test;
+    BinarySearchTree<int> software_under_test = initializeTree(5, 4, 5, 6, 2, 3);
 
     // Execution
-    bool test = software_under_test.Remove(2);
+    bool test = software_under_test.Insert(5);
 
     // Verification
     ASSERT_FALSE(test);
@@ -111,18 +123,26 @@ TEST(BinarySearchTreeSuite, SearchReturnsNullptrIfTheTreeIsEmpty) {
     ASSERT_EQ(nullptr, test);
 }
 
-TEST(BinarySearchTreeSuite, SearchReturnsCorrectTreeNode) {
+TEST(BinarySearchTreeSuite, SearchReturnsCorrectTreeNodeInGreaterSubtreeOfRoot) {
     // Setup
-    BinarySearchTree<int> software_under_test;
-    software_under_test.Insert(1);
-    software_under_test.Insert(2);
-    software_under_test.Insert(3);
+    BinarySearchTree<int> software_under_test = initializeTree(9, 10, 5, 20, 25, 15, 11, 30, 0, 9);
 
     // Execution
-    TreeNode<int>* test = software_under_test.Search(2);
+    TreeNode<int>* test = software_under_test.Search(15);
 
     // Verification
-    ASSERT_EQ(software_under_test.GetRoot()->GetChildren()[1], test);
+    ASSERT_EQ(software_under_test.GetRoot()->GetChildren()[1]->GetChildren()[0], test);
+}
+
+TEST(BinarySearchTreeSuite, SearchReturnsCorrectTreeNodeInSmallerSubtreeOfRoot) {
+    // Setup
+    BinarySearchTree<int> software_under_test = initializeTree(9, 10, 5, 20, 25, 15, 11, 30, 0, 9);
+
+    // Execution
+    TreeNode<int>* test = software_under_test.Search(9);
+
+    // Verification
+    ASSERT_EQ(software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[1], test);
 }
 
 TEST(BinarySearchTreeSuite, RemoveReturnsFalseWhenCalledOnAnEmptyTree) {
@@ -131,6 +151,17 @@ TEST(BinarySearchTreeSuite, RemoveReturnsFalseWhenCalledOnAnEmptyTree) {
 
     // Execution
     bool test = software_under_test.Remove(2);
+
+    // Verification
+    ASSERT_FALSE(test);
+}
+
+TEST(BinarySearchTreeSuite, RemoveReturnsFalseWhenDataIsNotFoundInTheTree) {
+    // Setup
+    BinarySearchTree<int> software_under_test = initializeTree(5, 15, -1, 2, 22, 12);
+
+    // Execution
+    bool test = software_under_test.Remove(-2);
 
     // Verification
     ASSERT_FALSE(test);
@@ -168,7 +199,7 @@ TEST(BinarySearchTreeSuite, RemovePreservesTreeStructureIfTheDataIsFoundInTheRoo
     ASSERT_EQ(4, software_under_test.GetRoot()->GetChildren()[1]->GetData());
 }
 
-TEST(BinarySearchTreeSuite, SeriesOfInsertionAndRemovalsPreserveTreeStructure) {
+TEST(BinarySearchTreeSuite, SeriesOfInsertionsAndRemovalsPreserveTreeStructure) {
     // Setup
     BinarySearchTree<int> software_under_test;
 
