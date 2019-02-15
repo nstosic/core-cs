@@ -163,7 +163,148 @@ TEST(BinarySearchTreeSuite, RemovePreservesTreeStructureIfTheDataIsFoundInTheRoo
     software_under_test.Remove(2);
 
     // Verification
-    ASSERT_EQ(1, software_under_test.GetRoot()->GetData());
-    ASSERT_EQ(3, software_under_test.GetRoot()->GetChildren()[1]->GetData());
-    ASSERT_EQ(4, software_under_test.GetRoot()->GetChildren()[1]->GetChildren()[1]->GetData());
+    ASSERT_EQ(3, software_under_test.GetRoot()->GetData());
+    ASSERT_EQ(1, software_under_test.GetRoot()->GetChildren()[0]->GetData());
+    ASSERT_EQ(4, software_under_test.GetRoot()->GetChildren()[1]->GetData());
+}
+
+TEST(BinarySearchTreeSuite, SeriesOfInsertionAndRemovalsPreserveTreeStructure) {
+    // Setup
+    BinarySearchTree<int> software_under_test;
+
+    // Expected tree:
+    //     10
+    software_under_test.Insert(10);
+    ASSERT_EQ(10, software_under_test.GetRoot()->GetData());
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[1]);
+
+    // Expected tree:
+    //     10
+    //       \
+    //        20
+    software_under_test.Insert(20);
+    ASSERT_EQ(10, software_under_test.GetRoot()->GetData());
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]);
+    ASSERT_EQ(20, software_under_test.GetRoot()->GetChildren()[1]->GetData());
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[1]->GetChildren()[0]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[1]->GetChildren()[1]);
+
+    // Expected tree:
+    //     10
+    //    /  \
+    //   5    20
+    software_under_test.Insert(5);
+    ASSERT_EQ(10, software_under_test.GetRoot()->GetData());
+    ASSERT_EQ(5, software_under_test.GetRoot()->GetChildren()[0]->GetData());
+    ASSERT_EQ(20, software_under_test.GetRoot()->GetChildren()[1]->GetData());
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[0]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[1]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[1]->GetChildren()[0]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[1]->GetChildren()[1]);
+
+    // Expected tree:
+    //     10
+    //    /  \
+    //   5    20
+    //    \
+    //     9
+    software_under_test.Insert(9);
+    ASSERT_EQ(10, software_under_test.GetRoot()->GetData());
+    ASSERT_EQ(5, software_under_test.GetRoot()->GetChildren()[0]->GetData());
+    ASSERT_EQ(20, software_under_test.GetRoot()->GetChildren()[1]->GetData());
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[0]);
+    ASSERT_EQ(9, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[1]->GetData());
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[1]->GetChildren()[0]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[1]->GetChildren()[1]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[1]->GetChildren()[0]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[1]->GetChildren()[1]);
+
+    // Expected tree:
+    //     20
+    //    /
+    //   5
+    //    \
+    //     9
+    software_under_test.Remove(10);
+    ASSERT_EQ(20, software_under_test.GetRoot()->GetData());
+    ASSERT_EQ(5, software_under_test.GetRoot()->GetChildren()[0]->GetData());
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[1]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[0]);
+    ASSERT_EQ(9, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[1]->GetData());
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[1]->GetChildren()[0]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[1]->GetChildren()[1]);
+
+    // Expected tree:
+    //     20
+    //    /
+    //   5
+    //  / \
+    // 2   9
+    software_under_test.Insert(2);
+    ASSERT_EQ(20, software_under_test.GetRoot()->GetData());
+    ASSERT_EQ(5, software_under_test.GetRoot()->GetChildren()[0]->GetData());
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[1]);
+    ASSERT_EQ(2, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[0]->GetData());
+    ASSERT_EQ(9, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[1]->GetData());
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[0]->GetChildren()[0]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[0]->GetChildren()[1]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[1]->GetChildren()[0]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[1]->GetChildren()[1]);
+
+    // Expected tree:
+    //     20
+    //    /
+    //   9
+    //  /
+    // 2
+    software_under_test.Remove(5);
+    ASSERT_EQ(20, software_under_test.GetRoot()->GetData());
+    ASSERT_EQ(9, software_under_test.GetRoot()->GetChildren()[0]->GetData());
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[1]);
+    ASSERT_EQ(2, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[0]->GetData());
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[1]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[0]->GetChildren()[0]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[0]->GetChildren()[1]);
+
+    // Expected tree:
+    //     9
+    //    /
+    //   2
+    software_under_test.Remove(20);
+    ASSERT_EQ(9, software_under_test.GetRoot()->GetData());
+    ASSERT_EQ(2, software_under_test.GetRoot()->GetChildren()[0]->GetData());
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[1]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[0]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[1]);
+
+    // Expected tree:
+    //     9
+    //    /  \
+    //   2    18
+    software_under_test.Insert(18);
+    ASSERT_EQ(9, software_under_test.GetRoot()->GetData());
+    ASSERT_EQ(2, software_under_test.GetRoot()->GetChildren()[0]->GetData());
+    ASSERT_EQ(18, software_under_test.GetRoot()->GetChildren()[1]->GetData());
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[0]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[1]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[1]->GetChildren()[0]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[1]->GetChildren()[1]);
+
+    // Expected tree:
+    //     9
+    //    /  \
+    //   2    18
+    //          \
+    //           22
+    software_under_test.Insert(22);
+    ASSERT_EQ(9, software_under_test.GetRoot()->GetData());
+    ASSERT_EQ(2, software_under_test.GetRoot()->GetChildren()[0]->GetData());
+    ASSERT_EQ(18, software_under_test.GetRoot()->GetChildren()[1]->GetData());
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[0]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[0]->GetChildren()[1]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[1]->GetChildren()[0]);
+    ASSERT_EQ(22, software_under_test.GetRoot()->GetChildren()[1]->GetChildren()[1]->GetData());
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[1]->GetChildren()[1]->GetChildren()[0]);
+    ASSERT_EQ(nullptr, software_under_test.GetRoot()->GetChildren()[1]->GetChildren()[1]->GetChildren()[1]);
 }
