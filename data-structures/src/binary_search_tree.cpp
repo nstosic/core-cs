@@ -61,6 +61,7 @@ bool BinarySearchTree<T>::Remove(T data) {
     if (this->root_->GetData() == data && this->root_->GetNumberOfChildren() == 0) {
         delete this->root_;
         this->root_ = nullptr;
+        return true;
     }
     TreeNode<T>* parent = nullptr;
     TreeNode<T>* temp = this->root_;
