@@ -26,9 +26,11 @@ TEST(CircularBufferSuite, ProduceReturnsTrueIfValueIsStored) {
 TEST(CircularBufferSuite, ProduceReturnsFalseIfBufferIsFull) {
     // Setup
     CircularBuffer software_under_test(5);
-    char* circular_buffer_pointer = (char*)&software_under_test;
-    void* tail_pointer = (void*)(circular_buffer_pointer + sizeof(int*) + sizeof(unsigned int) + sizeof(int));
-    *((int*)tail_pointer) = 4;
+    software_under_test.Produce(1);
+    software_under_test.Produce(1);
+    software_under_test.Produce(1);
+    software_under_test.Produce(1);
+    software_under_test.Produce(1);
 
     // Execution
     bool produce_result = software_under_test.Produce(2);
@@ -86,9 +88,9 @@ TEST(CircularBufferSuite, ConsumeUpdatesHeadValue) {
     // Setup
     CircularBuffer software_under_test(5);
     char* circular_buffer_pointer = (char*)&software_under_test;
+    software_under_test.Produce(3);
+    software_under_test.Produce(3);
     int original_head_value = *(int*)(void*)(circular_buffer_pointer + sizeof(int*) + sizeof(unsigned int));
-    software_under_test.Produce(3);
-    software_under_test.Produce(3);
 
     // Execution
     software_under_test.Consume();
@@ -96,6 +98,22 @@ TEST(CircularBufferSuite, ConsumeUpdatesHeadValue) {
     // Verification
     int updated_head_value = *(int*)(void*)(circular_buffer_pointer + sizeof(int*) + sizeof(unsigned int));
     ASSERT_EQ(original_head_value + 1, updated_head_value);
+}
+
+TEST(CircularBufferSuite, ConsumeUpdatesHeadValueToZeroIndexIfHeadIsAtLastIndex) {
+    // Setup
+    CircularBuffer software_under_test(5);
+    char* circular_buffer_pointer = (char*)&software_under_test;
+    void* head_pointer = (void*)(circular_buffer_pointer + sizeof(int*) + sizeof(unsigned int));
+    void* tail_pointer = (void*)(circular_buffer_pointer + sizeof(int*) + sizeof(unsigned int) + sizeof(int));
+    *(int*)head_pointer = 4;
+    *(int*)tail_pointer = 4;
+
+    // Execution
+    software_under_test.Consume();
+
+    // Verification
+    ASSERT_EQ(0, *(int*)head_pointer);
 }
 
 TEST(CircularBufferSuite, ConsumeTakesCorrectValue) {
@@ -108,4 +126,52 @@ TEST(CircularBufferSuite, ConsumeTakesCorrectValue) {
 
     // Verification
     ASSERT_EQ(3, consumed_data);
+}
+
+TEST(CircularBufferSuite, AvailableReturnsAccurateAvailableSlotsInTheBuffer) {
+    // Setup
+    CircularBuffer software_under_test(5);
+    ASSERT_EQ(5, software_under_test.Available());
+
+    software_under_test.Produce(5);
+    ASSERT_EQ(4, software_under_test.Available());
+
+    software_under_test.Produce(55);
+    ASSERT_EQ(3, software_under_test.Available());
+
+    software_under_test.Produce(-5);
+    ASSERT_EQ(2, software_under_test.Available());
+
+    software_under_test.Consume();
+    ASSERT_EQ(3, software_under_test.Available());
+
+    software_under_test.Produce(0);
+    ASSERT_EQ(2, software_under_test.Available());
+
+    software_under_test.Produce(1);
+    ASSERT_EQ(1, software_under_test.Available());
+
+    software_under_test.Produce(2);
+    ASSERT_EQ(0, software_under_test.Available());
+
+    software_under_test.Produce(-1);
+    ASSERT_EQ(0, software_under_test.Available());
+
+    software_under_test.Consume();
+    ASSERT_EQ(1, software_under_test.Available());
+
+    software_under_test.Consume();
+    ASSERT_EQ(2, software_under_test.Available());
+
+    software_under_test.Consume();
+    ASSERT_EQ(3, software_under_test.Available());
+
+    software_under_test.Consume();
+    ASSERT_EQ(4, software_under_test.Available());
+
+    software_under_test.Consume();
+    ASSERT_EQ(5, software_under_test.Available());
+
+    software_under_test.Consume();
+    ASSERT_EQ(5, software_under_test.Available());
 }
