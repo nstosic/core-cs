@@ -3,11 +3,11 @@
 #include <cstdarg>
 
 // Initializes the stack with the arguments in LIFO order
-Stack<int> initializeStack(const int param_count...) {
+Stack<int> initializeStack(const unsigned int param_count...) {
     Stack<int> stack;
     va_list args;
     va_start(args, param_count);
-    for (int i = 0; i < param_count; i++) {
+    for (unsigned int i = 0; i < param_count; i++) {
         int arg = va_arg(args, int);
         stack.Push(arg);
     }
