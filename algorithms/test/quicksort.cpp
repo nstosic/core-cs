@@ -1,7 +1,7 @@
 #include "../src/quicksort.h"
 #include <gtest/gtest.h>
 #include <cstdarg>
-#include <iterator>
+#include <cstring> // For memcpy
 
 extern void quicksort(int* array_pointer, unsigned int number_of_elements, int quicksort_scheme);
 
