@@ -1,4 +1,5 @@
 #include "lru_cache.h"
+#include <assert.h>
 
 template <typename T>
 LruCache<T>::LruCache() : LruCache(1, 0, nullptr, nullptr) {}
