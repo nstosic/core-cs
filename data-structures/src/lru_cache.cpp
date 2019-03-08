@@ -72,7 +72,7 @@ void LruCache<T>::put(int key, T value) {
     } else if (this->cache_.find(key) != this->cache_.end()) {
         // If already present
         moveToFront(key);
-        this->first_->setData(value);
+        this->cache_[key] = value;
     } else if (this->size_ == this->capacity_) {
         // If full
         int lastKey = this->last_->getData();
