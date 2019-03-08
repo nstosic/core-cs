@@ -1,5 +1,6 @@
 #include "lru_cache.h"
 #include <assert.h>
+#include <stdexcept>
 
 template <typename T>
 LruCache<T>::LruCache() : LruCache(1, 0, nullptr, nullptr) {}
@@ -36,12 +37,16 @@ void LruCache<T>::moveToFront(int key) {
     }
     if (obj->getPrev() != nullptr) {
         obj->getPrev()->setNext(obj->getNext());
-        if (obj->getNext() != nullptr) {
+        if (obj != this->last_) {
             obj->getNext()->setPrev(obj->getPrev());
+        } else {
+            this->last_->getPrev()->setNext(nullptr);
+            this->last_ = this->last_->getPrev();
         }
         assert(this->first_ != obj);
         obj->setNext(this->first_);
         obj->setPrev(nullptr);
+        this->first_->setPrev(obj);
         this->first_ = obj;
     }
 }
@@ -50,10 +55,10 @@ template <typename T>
 T LruCache<T>::get(int key) {
     if (this->cache_.find(key) != this->cache_.end()) {
         DoubleLinkedNode<T> obj = this->cache_[key];
-        
+        this->moveToFront(key);
         return obj.getData();
     }
-    return T();
+    throw ElementNotFoundException();
 }
 
 template <typename T>
@@ -74,6 +79,7 @@ void LruCache<T>::put(int key, T value) {
         this->cache_.erase(lastKey);
         DoubleLinkedNode<int>* temp = this->last_;
         this->last_ = this->last_->getPrev();
+        this->last_->setNext(nullptr);
         delete temp;
         this->cache_[key] = value;
         moveToFront(key);
@@ -81,6 +87,7 @@ void LruCache<T>::put(int key, T value) {
         this->cache_[key] = value;
         DoubleLinkedNode<int>* indexNode = new DoubleLinkedNode<int>(key);
         indexNode->setNext(this->first_);
+        this->first_->setPrev(indexNode);
         this->first_ = indexNode;
         this->size_++;
     }
