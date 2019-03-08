@@ -93,6 +93,34 @@ TEST(LruCacheSuite, PutPlacesTheObjectToTheFrontOfTheRecentlyUsedList) {
     ASSERT_EQ(66, software_under_test.first_->getData());
 }
 
+TEST(LruCacheSuite, PutReplacesTheValueOfThePreviouslyCachedObjectIfTheSameKeyIsUsed) {
+    // Setup
+    LruCache<int> software_under_test(6);
+
+    // Execution
+    software_under_test.put(4, 4);
+    software_under_test.put(4, 14);
+
+    // Verification
+    ASSERT_EQ(1, software_under_test.size());
+    ASSERT_EQ(14, software_under_test.get(4));
+}
+
+TEST(LruCacheSuite, PutPushesTheIndexNodeToTheFrontOfTheRecentlyUsedQueueIfTheSameKeyIsUsed) {
+    // Setup
+    LruCache<int> software_under_test(6);
+
+    // Execution
+    software_under_test.put(4, 4);
+    software_under_test.put(55, 5);
+    software_under_test.put(5, 55);
+    software_under_test.get(55);
+    software_under_test.put(4, 14);
+
+    // Verification
+    ASSERT_EQ(4, software_under_test.first_->getData());
+}
+
 TEST(LruCacheSuite, PutDoesNotRemoveAnyCachedObjectsIfCacheIsNotFull) {
     // Setup
     LruCache<int> software_under_test(6);

@@ -18,6 +18,7 @@ private:
     void moveToFront(int key);
     friend class LruCacheSuite_GetMovesTheObjectToTheFrontOfTheRecentlyUsedList_Test;
     friend class LruCacheSuite_PutPlacesTheObjectToTheFrontOfTheRecentlyUsedList_Test;
+    friend class LruCacheSuite_PutPushesTheIndexNodeToTheFrontOfTheRecentlyUsedQueueIfTheSameKeyIsUsed_Test;
 public:
     LruCache();
     LruCache(unsigned int capacity);
