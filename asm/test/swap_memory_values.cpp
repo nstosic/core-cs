@@ -6,6 +6,10 @@ extern "C" {
 
 extern void SwapTwoValuesInMemory(int *mem_addr_a, int *mem_addr_b);
 
+#ifdef __cplusplus
+}
+#endif
+
 TEST(AsmSuite, AsmSwapTwoValuesInMemory) {
     // Setup
     int *a = (int*)malloc(sizeof(int));
@@ -20,7 +24,3 @@ TEST(AsmSuite, AsmSwapTwoValuesInMemory) {
     ASSERT_EQ(-1, *a);
     ASSERT_EQ(1, *b);
 }
-
-#ifdef __cplusplus
-}
-#endif
