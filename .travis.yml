@@ -17,6 +17,7 @@ script:
         - cmake --build .
         - ./data_structures_tests
         - ./algorithms_tests
+        - ./asm_tests
 
 after_success:
         - coveralls --root . -E ".*gtest.*" -E ".*CMakeFiles.*"
