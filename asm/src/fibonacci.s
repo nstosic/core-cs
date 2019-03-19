@@ -15,7 +15,7 @@ FibonacciNaive:
     sub ecx, 1
     push rdi
     mov edi, ecx
-    call _FibonacciNaive
+    call FibonacciNaive
     pop rdi
     mov edx, dword ptr [rbp - 8]
     imul eax, edx
