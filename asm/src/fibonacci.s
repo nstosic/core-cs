@@ -6,7 +6,7 @@ _FibonacciNaive:
     mov dword ptr [rbp - 8], edi
     mov ecx, dword ptr [rbp - 8]
     mov edx, ecx
-    and edx, 80000000h
+    and edx, 0x80000000
     cmp edx, 0
     jnz exitInvalidParam
     mov eax, 1
