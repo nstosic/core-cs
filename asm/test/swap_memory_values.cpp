@@ -1,13 +1,9 @@
 #include <gtest/gtest.h>
 
 #ifdef __cplusplus
-extern "C" {
-#endif
-
-extern void SwapTwoValuesInMemory(int *mem_addr_a, int *mem_addr_b);
-
-#ifdef __cplusplus
-}
+extern "C" void SwapTwoValuesInMemory(void*,void*);
+#else
+extern void SwapTwoValuesInMemory(int* a, int* b);
 #endif
 
 TEST(AsmSuite, AsmSwapTwoValuesInMemory) {
