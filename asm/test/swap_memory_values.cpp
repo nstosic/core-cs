@@ -1,10 +1,7 @@
 #include <gtest/gtest.h>
+#include "travis_macro.h"
 
-#if BUILD_ON_TRAVIS == 1
-extern "C" void _SwapTwoValuesInMemory(int*, int*);
-#else
-extern "C" void SwapTwoValuesInMemory(int*, int*);
-#endif
+ASSEMBLY_DECLARATION(void, SwapTwoValuesInMemory(int*, int*));
 
 TEST(AsmSuite, AsmSwapTwoValuesInMemory) {
     // Setup
@@ -14,7 +11,7 @@ TEST(AsmSuite, AsmSwapTwoValuesInMemory) {
     *b = -1;
 
     // Execution
-    SwapTwoValuesInMemory(a, b);
+    ASSEMBLY_CALL(SwapTwoValuesInMemory(a, b));
 
     // Verification
     ASSERT_EQ(-1, *a);
