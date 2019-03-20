@@ -3,23 +3,24 @@
 _FibonacciNaive:
     push rbp
     mov rbp, rsp
-    mov dword ptr [rbp - 8], edi
-    mov ecx, dword ptr [rbp - 8]
-    mov edx, ecx
-    and edx, 0x80000000
-    cmp edx, 0
-    jnz exitInvalidParam
+    mov dword ptr [rbp - 4], edi
+    mov ecx, dword ptr [rbp - 4]
     mov eax, 1
+    mov edx, 1
+    cmp ecx, 2
+    jg biggerthantwo
     cmp ecx, 0
-    jz retifzero
-    sub ecx, 1
-    push rdi
-    mov edi, ecx
-    call _FibonacciNaive
-    pop rdi
-    mov edx, dword ptr [rbp - 8]
-    imul eax, edx
-retifzero:
+    jle exitInvalidParam
+    jmp retvalue
+biggerthantwo:
+    dec ecx
+    add eax, edx
+    mov ebx, eax
+    sub ebx, edx
+    mov edx, ebx
+    cmp ecx, 2
+    jg biggerthantwo
+retvalue:
     pop rbp
     ret
 exitInvalidParam:
