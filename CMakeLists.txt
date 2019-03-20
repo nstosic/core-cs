@@ -20,6 +20,12 @@ target_link_libraries(data_structures_tests PUBLIC gtest ${CMAKE_THREAD_LIBS_INI
 target_link_libraries(algorithms_tests PUBLIC gtest ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(asm_tests PUBLIC gtest ${CMAKE_THREAD_LIBS_INIT} asm_source)
 
+if (BUILD_ON_TRAVIS)
+    add_compile_definitions(BUILD_ON_TRAVIS=1)
+else()
+    add_compile_definitions(BUILD_ON_TRAVIS=0)
+endif()
+
 if (MSVC)
     target_compile_options(data_structures_tests PRIVATE /std:c++11 /W4 /WX)
     target_compile_options(algorithms_tests PRIVATE /std:c++11 /W4 /WX)

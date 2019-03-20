@@ -13,8 +13,8 @@ before_install:
         - pip install --user cpp-coveralls
 
 script:
-        - CXX=/usr/bin/g++-8 CC=/usr/bin/gcc-8 GCOV=/usr/bin/gcov-8 cmake -DCOVERAGE=1 .
-        - cmake -DBUILD_ON_TRAVIS=1 --build .
+        - CXX=/usr/bin/g++-8 CC=/usr/bin/gcc-8 GCOV=/usr/bin/gcov-8 cmake -DCOVERAGE=1 -DBUILD_ON_TRAVIS=1 .
+        - cmake --build .
         - ./data_structures_tests
         - ./algorithms_tests
         - ./asm_tests
