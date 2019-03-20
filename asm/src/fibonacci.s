@@ -1,6 +1,6 @@
 .intel_syntax noprefix
-.globl FibonacciNaive
-FibonacciNaive:
+.globl _FibonacciNaive
+_FibonacciNaive:
     push rbp
     mov rbp, rsp
     mov dword ptr [rbp - 8], edi
@@ -15,7 +15,7 @@ FibonacciNaive:
     sub ecx, 1
     push rdi
     mov edi, ecx
-    call FibonacciNaive
+    call _FibonacciNaive
     pop rdi
     mov edx, dword ptr [rbp - 8]
     imul eax, edx

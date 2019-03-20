@@ -1,6 +1,6 @@
 .intel_syntax noprefix
-.globl	SwapTwoValuesInMemory
-SwapTwoValuesInMemory:
+.globl	_SwapTwoValuesInMemory
+_SwapTwoValuesInMemory:
 	push rbp
 	mov	rbp, rsp
 	mov	qword ptr [rbp - 8], rdi

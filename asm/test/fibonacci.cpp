@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
 
-#ifdef __cplusplus
-extern "C" int FibonacciNaive(int);
+#if BUILD_ON_TRAVIS == 1
+extern "C" int _FibonacciNaive(int);
 #else
-extern int FibonacciNaive(int a);
+extern "C" int FibonacciNaive(int);
 #endif
 
 TEST(AsmSuite, FibonacciNaiveReturnsCorrectValueForZero) {

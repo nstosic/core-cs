@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
 
-#ifdef __cplusplus
-extern "C" void SwapTwoValuesInMemory(void*,void*);
+#if BUILD_ON_TRAVIS == 1
+extern "C" void _SwapTwoValuesInMemory(int*, int*);
 #else
-extern void SwapTwoValuesInMemory(int* a, int* b);
+extern "C" void SwapTwoValuesInMemory(int*, int*);
 #endif
 
 TEST(AsmSuite, AsmSwapTwoValuesInMemory) {
