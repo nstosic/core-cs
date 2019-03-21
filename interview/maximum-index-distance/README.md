@@ -17,7 +17,7 @@ Print the maximum difference of the indexes i and j in a separtate line.
 ```
 
 ## Example:
-Input:
+Input:  
 1   
 9  
 34 8 10 3 2 80 30 33 1
