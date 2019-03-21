@@ -12,7 +12,8 @@ Print the maximum difference of the indexes i and j in a separtate line.
 ## Constraints:
 ```1 ≤ T ≤ 1000
 1 ≤ N ≤ 10^7
-0 ≤ A[i] ≤ 10^18```
+0 ≤ A[i] ≤ 10^18
+```
 
 ## Example:
 Input:
