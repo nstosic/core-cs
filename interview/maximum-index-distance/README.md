@@ -10,15 +10,16 @@ The first line contains an integer T, depicting total number of test cases.  The
 Print the maximum difference of the indexes i and j in a separtate line.
 
 ## Constraints:
-```1 ≤ T ≤ 1000
+```
+1 ≤ T ≤ 1000
 1 ≤ N ≤ 10^7
 0 ≤ A[i] ≤ 10^18
 ```
 
 ## Example:
 Input:
-1
-9
+1   
+9  
 34 8 10 3 2 80 30 33 1
 
 Output:
