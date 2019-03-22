@@ -34,4 +34,4 @@ ret
 ```
 
 ## Name mangling
-Unit tests are written in C++ so they use `extern 'C'` wrapper when declaring function headers for assembly writtent functions that they are testing. However, since different compilers have their own rules on prefixing C function names with underscore, all assembly function names start with `_` and unit test declarations use `ASSEMBLY_DECLARATION(x, y)` and `ASSEMBLY_CALL(x)` macros which expand to different values based on `BUILD_ON_TRAVIS` build flag to compensate for this discrepancy.
+Unit tests are written in C++ so they use `extern 'C'` wrapper when declaring function headers for assembly written functions that they are testing. However, since different compilers have their own rules on prefixing C function names with underscore, all assembly function names start with `_` and unit test declarations use `ASSEMBLY_DECLARATION(x, y)` and `ASSEMBLY_CALL(x)` macros which expand to different values based on `BUILD_ON_TRAVIS` build flag to compensate for this discrepancy.
