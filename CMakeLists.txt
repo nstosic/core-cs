@@ -10,10 +10,9 @@ add_definitions(-Wall -std=c++11)
 file(GLOB_RECURSE SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "data-structures/*.cpp")
 add_executable(data_structures_tests ${SOURCES})
 file(GLOB_RECURSE SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "algorithms/*.cpp")
-add_executable(algorithms_tests ${SOURCES})
+add_executable(algorithms_tests ${SOURCES} "data-structures/src/stack.cpp" "data-structures/src/node.cpp")
 file(GLOB_RECURSE SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "asm/*.cpp")
 add_executable(asm_tests ${SOURCES})
-
 
 find_package (Threads REQUIRED)
 target_link_libraries(data_structures_tests PUBLIC gtest ${CMAKE_THREAD_LIBS_INIT})
