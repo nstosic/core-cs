@@ -58,3 +58,4 @@ bool Stack<T>::IsEmpty() const {
 }
 
 template class Stack<int>; // forward resolution for template type used in unit tests
+template class Stack<const char*>; // forward resolution for template type used in unit tests

@@ -32,3 +32,4 @@ Node<T>* Node<T>::GetNext() const {
 }
 
 template class Node<int>; // forward resolution for template type used in unit tests
+template class Node<const char*>; // forward resolution for template type used in unit tests
