@@ -20,7 +20,7 @@ const char* ConvertToPostfix(const char* infix_expression) {
                 output += " ";
                 number.clear();
             }
-            if (iswspace(*it) || ',' == *it) {
+            if (isspace(*it) || ',' == *it) {
                 // Ignore
             } else if ('(' == *it) {
                 std::string *op_str = new std::string(1, *it);
