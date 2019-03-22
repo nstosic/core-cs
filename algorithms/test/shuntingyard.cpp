@@ -51,3 +51,25 @@ TEST(ShuntingYardSuite, ShuntingYardThrowsAnExceptionIfInputHasAnInvalidOperator
     // Execution
     ASSERT_THROW(ConvertToPostfix(input), InvalidInfixExpression);
 }
+
+TEST(ShuntingYardSuite, ShuntingYardPreservesOperationPrecedenceWithoutParenthesis) {
+    // Setup
+    const char* input = "3 + 3 * 3 * 3";
+
+    // Execution
+    const char* output = ConvertToPostfix(input);
+
+    // Verification
+    ASSERT_STREQ("3 3 3 * 3 * +", output);
+}
+
+TEST(ShuntingYardSuite, ShuntingYardPreservesOperationPrecedenceWithParenthesis) {
+    // Setup
+    const char* input = "1 * 2 / (3 * 4) + 10 * (11 - 12 * 13) / 14 - 15";
+
+    // Execution
+    const char* output = ConvertToPostfix(input);
+
+    // Verification
+    ASSERT_STREQ("1 2 * 3 4 * / 10 11 12 13 * - * 14 / + 15 -", output);
+}

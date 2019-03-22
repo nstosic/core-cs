@@ -1,12 +1,17 @@
 #include <string>
 #include <stdexcept>
+#include <unordered_map>
 #include "../../data-structures/src/stack.h"
 #include "shuntingyard.h"
 
 #define SUPPORTED_OPERATION_COUNT 4
 
 const char* ConvertToPostfix(const char* infix_expression) {
-    const char* supported_operators[] = {"+", "-", "*", "/"};
+    std::unordered_map<char, int> supported_operators;
+    supported_operators['+'] = 1;
+    supported_operators['-'] = 1;
+    supported_operators['*'] = 2;
+    supported_operators['/'] = 2;
     std::string input(infix_expression);
     std::string output;
     std::string number("");
@@ -43,13 +48,26 @@ const char* ConvertToPostfix(const char* infix_expression) {
                 // Assume that the current token is a function or operation designator
                 bool operator_supported = false;
                 for (unsigned int i = 0; i < SUPPORTED_OPERATION_COUNT && !operator_supported; i++) {
-                    operator_supported = *it == supported_operators[i][0];
+                    operator_supported = supported_operators.count(*it);
                 }
                 std::string *op_str = new std::string(1, *it);
-                if (!operator_supported) {
-                    throw InvalidInfixExpression("Invalid expression given as input, unsupported operation: " + *op_str);
-                } else {
+                if (operator_supported) {
+                    bool lower_priority_operation_on_stack = true;
+                    while (lower_priority_operation_on_stack && !operator_stack.IsEmpty()) {
+                        std::string operator_on_stack = operator_stack.Peek();
+                        if (operator_on_stack[0] == '(') {
+                            break;
+                        }
+                        else if (supported_operators[operator_on_stack[0]] >= supported_operators[*it]) {
+                            output += operator_stack.Pop();
+                            output += " ";
+                        } else {
+                            lower_priority_operation_on_stack = false;
+                        }
+                    }
                     operator_stack.Push(op_str->c_str());
+                } else {
+                    throw InvalidInfixExpression("Invalid expression given as input, unsupported operation: " + *op_str);
                 }
             }
         }
