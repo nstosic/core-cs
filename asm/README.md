@@ -2,6 +2,9 @@
 
 This directory serves to provide solutions for problems (almost exclusively scoped to a single function) written in x86-64 instruction set.
 
+## Instruction set
+All the assembly functions are written using Intel 64 architecture instruction set.
+
 ## Syntax
 All the assembly functions are written in `.intel_syntax noprefix`.
 
@@ -13,22 +16,22 @@ This is the prologue and epliogue of the functions that satisfies the above cons
 ; Prologue
 push rbp
 mov rbp, rsp
+sub rsp, ? ; Allocate space for local variables
 push r15
 push r14
 push r13
 push r12
 push rbx
-sub rsp, ? ; Allocate space for local variables
 
 ;...
 
 ; Epilogue
-add rsp, ? ; Deallocate space that was allocated for local variables
 pop rbx
 pop r12
 pop r13
 pop r14
 pop r15
+add rsp, ? ; Deallocate space that was allocated for local variables
 pop rbp
 ret
 ```
