@@ -3,6 +3,7 @@
 _FibonacciNaive:
     push rbp
     mov rbp, rsp
+    sub rsp, 4
     push r15
     push r14
     push r13
@@ -31,6 +32,7 @@ retvalue:
     pop r13
     pop r14
     pop r15
+    add rsp, 4
     pop rbp
     ret
 exitInvalidParam:
@@ -40,5 +42,6 @@ exitInvalidParam:
     pop r13
     pop r14
     pop r15
+    add rsp, 4
     pop rbp
     ret

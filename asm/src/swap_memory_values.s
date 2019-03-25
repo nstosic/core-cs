@@ -3,6 +3,7 @@
 _SwapTwoValuesInMemory:
 	push rbp
 	mov	rbp, rsp
+	sub rsp, 16
 	push r15
 	push r14
 	push r13
@@ -21,5 +22,6 @@ _SwapTwoValuesInMemory:
 	pop r13
 	pop r14
 	pop r15
+	add rsp, 16
 	pop	rbp
 	ret
