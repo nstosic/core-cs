@@ -10,7 +10,7 @@ add_definitions(-Wall -std=c++11)
 file(GLOB_RECURSE SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "data-structures/*.cpp")
 add_executable(data_structures_tests ${SOURCES})
 file(GLOB_RECURSE SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "algorithms/*.cpp")
-add_executable(algorithms_tests ${SOURCES} "data-structures/src/stack.cpp" "data-structures/src/node.cpp")
+add_executable(algorithms_tests ${SOURCES} "data-structures/src/stack.cpp" "data-structures/src/node.cpp" "data-structures/src/min_heap.cpp" "data-structures/src/max_heap.cpp" "data-structures/src/heap.cpp")
 file(GLOB_RECURSE SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "asm/*.cpp")
 add_executable(asm_tests ${SOURCES})
 
