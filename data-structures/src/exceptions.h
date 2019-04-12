@@ -1,7 +1,7 @@
 #ifndef DATA_STRUCTURE_EXCEPTIONS_H
 #define DATA_STRUCTURE_EXCEPTIONS_H
 
-#include <exception>
+#include <stdexcept>
 #include <string>
 
 class HeapEmptyException: public std::runtime_error {
