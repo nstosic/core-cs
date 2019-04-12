@@ -4,8 +4,6 @@
 #include <unordered_map>
 #include "double_linked_node.h"
 
-class ElementNotFoundException: public std::exception {};
-
 template <typename T>
 class LruCache {
 private:

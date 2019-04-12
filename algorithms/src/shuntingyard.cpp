@@ -1,8 +1,6 @@
-#include <string>
-#include <stdexcept>
 #include <unordered_map>
 #include "../../data-structures/src/stack.h"
-#include "shuntingyard.h"
+#include "exceptions.h"
 
 #define SUPPORTED_OPERATION_COUNT 4
 

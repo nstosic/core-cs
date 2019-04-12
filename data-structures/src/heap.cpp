@@ -1,4 +1,5 @@
 #include "heap.h"
+#include "exceptions.h"
 
 template <typename T>
 Heap<T>::Heap() {

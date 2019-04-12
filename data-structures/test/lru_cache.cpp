@@ -1,4 +1,5 @@
 #include "../src/lru_cache.h"
+#include "../src/exceptions.h"
 #include <gtest/gtest.h>
 
 TEST(LruCacheSuite, EmptyConstructorCreatesCacheWithCapacityOfOne) {

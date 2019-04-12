@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include "../src/min_heap.h"
 #include "../src/max_heap.h"
-#include "../src/heap.h"
+#include "../src/exceptions.h"
 
 #define ELEMENT_EXISTS_IN_VECTOR(elem, vec) std::find(vec->begin(), vec->end(), elem) != vec->end()
 

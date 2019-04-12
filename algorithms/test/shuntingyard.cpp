@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../src/shuntingyard.h"
+#include "../src/exceptions.h"
 
 extern const char* ConvertToPostfix(const char* infix_expression);
 

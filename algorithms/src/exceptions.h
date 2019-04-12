@@ -1,7 +1,8 @@
-#ifndef SHUNTINGYARD_H
-#define SHUNTINGYARD_H
+#ifndef ALGORITHM_EXCEPTIONS_H
+#define ALGORITHM_EXCEPTIONS_H
 
 #include <exception>
+#include <string>
 
 class InvalidInfixExpression: public std::runtime_error {
 public:
