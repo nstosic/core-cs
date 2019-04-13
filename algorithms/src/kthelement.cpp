@@ -12,7 +12,7 @@
 
 int Kth_Smallest(int* array, unsigned int n, unsigned int k) {
     if (k >= n) {
-        throw new IllegalArgumentException("Value of argument k must be less than the value of argument n");
+        throw IllegalArgumentException("Value of argument k must be less than the value of argument n");
     }
     MaxHeap<int> heap;
     for (unsigned int i = 0; i < n; i++) {
@@ -28,7 +28,7 @@ int Kth_Smallest(int* array, unsigned int n, unsigned int k) {
 
 int Kth_Largest(int* array, unsigned int n, unsigned int k) {
     if (k >= n) {
-        throw new IllegalArgumentException("Value of argument k must be less than the value of argument n");
+        throw IllegalArgumentException("Value of argument k must be less than the value of argument n");
     }
     MinHeap<int> heap;
     for (unsigned int i = 0; i < n; i++) {
