@@ -10,4 +10,10 @@ public:
     InvalidInfixExpression(std::string message) : std::runtime_error(message) {}
 };
 
+class IllegalArgumentException: public std::runtime_error {
+public:
+    IllegalArgumentException(const char* message) : std::runtime_error(message) {}
+    IllegalArgumentException(std::string message) : std::runtime_error(message) {}
+};
+
 #endif
