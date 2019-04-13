@@ -1,5 +1,6 @@
 #include "heap.h"
 #include "exceptions.h"
+#include <algorithm>
 
 template <typename T>
 Heap<T>::Heap() {
@@ -28,7 +29,8 @@ void Heap<T>::RemoveTop() {
     if (this->buffer_->empty()) {
         throw HeapEmptyException("Illegal call to RemoveTop() on an empty heap");
     }
-    this->buffer_->erase(this->buffer_->begin());
+    std::iter_swap(this->buffer_->begin(), this->buffer_->begin() + (int)this->buffer_->size() - 1);
+    this->buffer_->pop_back();
     this->BubbleDown();
 }
 

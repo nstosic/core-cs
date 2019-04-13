@@ -4,6 +4,8 @@
 #include "tree_node.h"
 #include <vector>
 
+class HeapEmptyException;
+
 template <typename T>
 class Heap {
 protected:

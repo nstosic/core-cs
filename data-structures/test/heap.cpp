@@ -142,3 +142,111 @@ TEST(HeapSuite, HeapSizeReturnsNumberOfElementsInTheUnderlyingVector) {
     // Verification
     ASSERT_EQ(3L, result);
 }
+
+TEST(HeapSuite, GetTopReturnsSmallestElementInMinHeap) {
+    // Setup
+    MinHeap<int> software_under_test;
+    software_under_test.Add(3);
+    software_under_test.Add(2);
+    software_under_test.Add(1);
+    software_under_test.Add(33);
+    software_under_test.Add(22);
+    software_under_test.Add(11);
+
+    // Execution
+    int result = software_under_test.GetTop();
+
+    // Verification
+    ASSERT_EQ(1, result);
+}
+
+TEST(HeapSuite, GetTopReturnsLargestElementInMaxHeap) {
+    // Setup
+    MaxHeap<int> software_under_test;
+    software_under_test.Add(3);
+    software_under_test.Add(2);
+    software_under_test.Add(1);
+    software_under_test.Add(33);
+    software_under_test.Add(22);
+    software_under_test.Add(0);
+
+    // Execution
+    int result = software_under_test.GetTop();
+
+    // Verification
+    ASSERT_EQ(33, result);
+}
+
+TEST(HeapSuite, MinHeapPropertyIsPreservedAfterRemoveTop) {
+    // Setup
+    MinHeap<int> software_under_test;
+    software_under_test.Add(3);
+    software_under_test.Add(-3);
+    software_under_test.Add(33);
+    software_under_test.Add(13);
+    software_under_test.Add(32);
+    software_under_test.Add(0);
+    int result;
+
+    // Execution
+
+    result = software_under_test.GetTop();
+    ASSERT_EQ(-3, result);
+
+    software_under_test.RemoveTop(); // Removes -3
+    result = software_under_test.GetTop();
+    ASSERT_EQ(0, result);
+
+    software_under_test.RemoveTop(); // Removes 0
+    result = software_under_test.GetTop();
+    ASSERT_EQ(3, result);
+
+    software_under_test.RemoveTop(); // Removes 3
+    result = software_under_test.GetTop();
+    ASSERT_EQ(13, result);
+
+    software_under_test.RemoveTop(); // Removes -13
+    result = software_under_test.GetTop();
+    ASSERT_EQ(32, result);
+
+    software_under_test.RemoveTop(); // Removes 32
+    result = software_under_test.GetTop();
+    ASSERT_EQ(33, result);
+}
+
+TEST(HeapSuite, MaxHeapPropertyIsPreservedAfterRemoveTop) {
+    // Setup
+    MaxHeap<int> software_under_test;
+    software_under_test.Add(3);
+    software_under_test.Add(-3);
+    software_under_test.Add(33);
+    software_under_test.Add(13);
+    software_under_test.Add(32);
+    software_under_test.Add(0);
+    int result;
+
+    // Execution
+
+    result = software_under_test.GetTop();
+    ASSERT_EQ(33, result);
+
+    software_under_test.RemoveTop(); // Removes 33
+    result = software_under_test.GetTop();
+    ASSERT_EQ(32, result);
+
+    software_under_test.RemoveTop(); // Removes 32
+    result = software_under_test.GetTop();
+    ASSERT_EQ(13, result);
+
+    software_under_test.RemoveTop(); // Removes 13
+    result = software_under_test.GetTop();
+    ASSERT_EQ(3, result);
+
+    software_under_test.RemoveTop(); // Removes 3
+    result = software_under_test.GetTop();
+    ASSERT_EQ(0, result);
+
+    software_under_test.RemoveTop(); // Removes 0
+    result = software_under_test.GetTop();
+    ASSERT_EQ(-3, result);
+}

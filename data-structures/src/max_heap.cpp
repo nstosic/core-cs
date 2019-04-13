@@ -2,6 +2,9 @@
 
 template <typename T>
 void MaxHeap<T>::BubbleUp() {
+    if (this->buffer_->size() < 2) {
+        return;
+    }
     T temp = (*(this->buffer_))[this->buffer_->size() - 1L];
     unsigned long ind = (this->buffer_->size() - 2L) / 2L;
     unsigned long prev = this->buffer_->size() - 1L;
@@ -17,19 +20,21 @@ template <typename T>
 void MaxHeap<T>::BubbleDown() {
     T temp = (*(this->buffer_))[0];
     unsigned long ind = 1;
-    bool violated = true;
-    while (violated && ind < this->buffer_->size()) {
-        violated = false;
-        if (temp < (*(this->buffer_))[ind]) {
-            (*(this->buffer_))[(ind - 1) / 2] = (*(this->buffer_))[ind];
-            (*(this->buffer_))[ind] = temp;
-            violated = true;
-            ind = 2 * ind + 1;
-        } else if (temp < (*(this->buffer_))[ind + 1]) {
-            (*(this->buffer_))[(ind - 1) / 2] = (*(this->buffer_))[ind];
-            (*(this->buffer_))[ind] = temp;
-            violated = true;
-            ind = 2 * ind + 3;
+    unsigned long position = 1;
+    T child_value;
+    for (; ind < this->buffer_->size(); ind = position) {
+        if ((ind + 1 == this->buffer_->size()) || ((*(this->buffer_))[ind] > (*(this->buffer_))[ind + 1])) {
+            child_value = (*(this->buffer_))[ind];
+            position = 2 * ind + 1;
+        } else {
+            child_value = (*(this->buffer_))[ind + 1];
+            position = 2 * ind + 3;
+        }
+        if (temp < child_value) {
+            (*(this->buffer_))[(ind - 1) / 2] = (*(this->buffer_))[ind + (position - 2 * ind) / 3];
+            (*(this->buffer_))[ind + (position - 2 * ind) / 3] = temp;
+        } else {
+            break;
         }
     }
 }
