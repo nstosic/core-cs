@@ -42,3 +42,27 @@ TEST(KthElementSuite, KthLargestReturnsProperResult) {
     // Verification
     ASSERT_EQ(2, result);
 }
+
+TEST(KthElementSuite, KthElementCallsKthSmallesMethodIfFourthParamIsLessThanOrEqualToZero) {
+    // Setup
+    int array[11] = {3, 17, 41, 45, 52, 59, 64, 60, 64, 92, 82};
+
+    // Execution
+    int expected_result = Kth_Smallest(array, 7, 5);
+    int result = Kth_Element(array, 7, 5, -1);
+
+    // Verification
+    ASSERT_EQ(expected_result, result);
+}
+
+TEST(KthElementSuite, KthElementCallsKthLargestMethodIfFourthParamIsGreaterThanZero) {
+    // Setup
+    int array[11] = {3, 17, 41, 45, 52, 59, 64, 60, 64, 92, 82};
+
+    // Execution
+    int expected_result = Kth_Largest(array, 7, 5);
+    int result = Kth_Element(array, 7, 5, 1);
+
+    // Verification
+    ASSERT_EQ(expected_result, result);
+}
