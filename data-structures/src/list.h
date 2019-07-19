@@ -17,4 +17,7 @@ public:
     int Size() const;
 };
 
+template <typename T>
+bool operator==(const List<T>& lhs, const List<T>& rhs);
+
 #endif

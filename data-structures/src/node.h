@@ -15,4 +15,9 @@ public:
     Node<T>* GetNext() const;
 };
 
+template <typename T>
+bool operator==(const Node<T>& lhs, const Node<T>& rhs);
+template <typename T>
+bool operator!=(const Node<T>& lhs, const Node<T>& rhs);
+
 #endif
