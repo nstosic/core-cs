@@ -1,5 +1,5 @@
 #include <cstdarg>
-#include "../../data-structures/src/list.h"
+#include "../data-structures/src/list.h"
 
 int* initializeArray(const unsigned int param_count...) {
     int* array = new int[param_count];

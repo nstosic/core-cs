@@ -1,8 +1,13 @@
 #include <gtest/gtest.h>
 #include "../../data-structures/src/list.h"
-#include "../src/reverseeveryknodes.h"
 
 extern List<int>* initializeList(const unsigned int param_count...);
+
+template <typename T>
+List<T> ReverseEveryKNodes(List<T>& input, unsigned int k);
+extern template List<int> ReverseEveryKNodes(List<int>& input, unsigned int k);
+
+extern void nonTemplateFunc(int x);
 
 TEST(ReverseEveryKNodeSuite, CallingFunctionOnEmptyListReturnsInput) {
     // Setup

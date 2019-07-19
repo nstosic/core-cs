@@ -1,5 +1,4 @@
 #include "../../data-structures/src/list.h"
-#include "reverseeveryknodes.h"
 
 template <typename T>
 Node<T>* ReverseNextKNodes(Node<T>* input, const unsigned int k) {
@@ -27,7 +26,7 @@ Node<T>* ReverseNextKNodes(Node<T>* input, const unsigned int k) {
 }
 
 template <typename T>
-List<T> ReverseEveryKNodes(List<T> &input, const unsigned int k) {
+List<T> ReverseEveryKNodes(List<T>& input, const unsigned int k) {
     if (input.GetHead() == nullptr) {
         return input;
     }
