@@ -18,6 +18,7 @@ script:
         - ./data_structures_tests
         - ./algorithms_tests
         - ./asm_tests
+        - ./interview_tests
 
 after_success:
         - coveralls --gcov /usr/bin/gcov-8 --root . -E ".*gtest.*" -E ".*CMakeFiles.*"
